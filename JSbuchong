@@ -3,8 +3,7 @@ hostname = greasyfork.org, api.m.jd.com, trade-acs.m.taobao.com
 
 # Boxjs
 # 访问地址  商店版: http://boxjs.com  测试版: http://boxjs.net
-# QuanX 测试版 (TestFlight)
-https://gitee.com/chavyleung/scripts/raw/master/box/rewrite/boxjs.rewrite.quanx.tf.conf
+# QuanX 测试版 (TestFlight) rewrite https://gitee.com/chavyleung/scripts/raw/master/box/rewrite/boxjs.rewrite.quanx.tf.conf
 
 ##NobyDa
 # https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Js.conf
