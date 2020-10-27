@@ -1,14 +1,14 @@
-# 剥离NZW9314维护JS脚本中除Nobyda, langkhach270389 之外其余脚本
+# NZW9314脚本停止维护，单独订阅Nobyda,langkhach270389脚本，剩余原NZW9314 JS脚本以该方式补充
 # Chavy box (多账号Cookie保存切换)
 # 访问:  http://boxjs.com 管理
 ^https?://boxjs.com/api url script-request-body https://gitee.com/chavyleung/scripts/raw/master/chavy.box.js
 ^https?://boxjs.com(/home|/sub|/my|/app|/log|/revert)?($|\/) url script-echo-response https://gitee.com/chavyleung/scripts/raw/master/chavy.box.js
 
 ##NobyDa
-# 见 https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Js.conf
+# https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Js.conf
 
 ##越南老哥 langkhach270389
-# 见 https://raw.githubusercontent.com/langkhach270389/Scripting/master/QuantumultX/Fake_Vip.txt
+# https://raw.githubusercontent.com/langkhach270389/Scripting/master/QuantumultX/Fake_Vip.txt
 
 # 公众号墨鱼手记    https://github.com/ddgksf2013
 # https://raw.githubusercontent.com/ddgksf2013/Cuttlefish/master/Conf/Quan_crack.conf
