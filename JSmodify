@@ -1,20 +1,20 @@
 # 自行维护NOBYDA, NZW未收录的脚本
 
 hostname = www.zhihu.com, pan.baidu.com, link.zhihu.com, oia.zhihu.com
-* 知乎网页显示优化
+# 知乎网页显示优化
 // 先重写到桌面版
 ^https:\/\/www\.zhihu\.com\/ url request-header (\r\n)User-Agent:.+(\r\n) request-header $1User-Agent: Mozilla/5.0 (Windows Phone 10)$2
 // 再注入 CSS 进行优化
 ^https:\/\/www\.zhihu\.com\/question url script-response-body https://raw.githubusercontent.com/elecV2/QuantumultX-Tools/master/zhihux.user.js
 
-* 百度网盘手机页面优化
+# 百度网盘手机页面优化
 ^https:\/\/pan\.baidu\.com url request-header (\r\n)User-Agent:.+(\r\n) request-header $1User-Agent: Mozilla/5.0 (Windows Phone 10)$2
 ^https:\/\/pan\.baidu\.com url script-response-body https://raw.githubusercontent.com/elecV2/QuantumultX-Tools/master/baiduPan.js
 
 
 
-* 去掉知乎跳转第三方网站时的中间确认页面
+# 去掉知乎跳转第三方网站时的中间确认页面
 ^https://link\.zhihu\.com/\?target=(https?)%3A//(.*) url 307 $1://$2
 
-* 知乎专栏底部推荐阅读文章直接打开（屏蔽跳转应用商店）
+# 知乎专栏底部推荐阅读文章直接打开（屏蔽跳转应用商店）
 ^https://oia\.zhihu\.com url 307 https://zhuanlan.zhihu.com
