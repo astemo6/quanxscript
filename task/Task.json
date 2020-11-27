@@ -65,11 +65,11 @@
         "0 12 * * * https://raw.githubusercontent.com/id77/QuantumultX/master/task/jdWuLiu.js, tag=京东物流派件提醒, img-url=https://raw.githubusercontent.com/id77/QuantumultX/master/icon/jdWuLiu.png ",
         "15 14 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_daily_egg.js, tag=天天提鹅 ",
         "12 13 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_pigPet.js, tag=金融养猪 ",
-        "0 9 * * * https://raw.githubusercontent.com/whyour/hundun/master/quanx/jdzz.js, tag=京东赚赚 ",
-        "2 9 * * * https://raw.githubusercontent.com/whyour/hundun/master/quanx/ddxw.js, tag=京东小窝 ",
-        "10 1 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_dreamFactory.js ",
-        "10 2 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_jdfactory.js ",
-        "10 7 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_syj.js ",
+        "0 9 * * * https://raw.githubusercontent.com/whyour/hundun/master/quanx/jdzz.js, tag=京东赚赚 ,img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdzz.png",
+        "2 9 * * * https://raw.githubusercontent.com/whyour/hundun/master/quanx/ddxw.js, tag=京东小窝 ,img-url=https://raw.githubusercontent.com/58xinian/icon/master/ddxw.png",
+        "10 1 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_dreamFactory.js, tag=京喜工厂",
+        "10 2 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_jdfactory.js, tag=东东工厂",
+        "10 7 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_syj.js, tag=十元街",
 
     ]
 }   
