@@ -11,8 +11,9 @@
         "40 1 * * * https://raw.githubusercontent.com/NobyDa/Script/master/iQIYI-DailyBonus/iQIYI.js, tag=爱奇艺 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/iQIYI.png",
         "45 1 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/suning/suning.js, tag=苏宁易购 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/suning.png",
         "50 1 * * * https://raw.githubusercontent.com/songyangzz/QuantumultX/master/elem/elemSign.js, tag=饿了么 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/elem.png",
-        "15 1 * * * https://raw.githubusercontent.com/zZPiglet/Task/master/DiDi/DiDi_reward.js, tag=滴滴出行 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/didi.png",
-        "3 2 * * * https://raw.githubusercontent.com/Tartarus2014/Script/master/DiDi.js, tag=滴滴出行 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/didi.png",
+        ;15 1 * * * https://raw.githubusercontent.com/zZPiglet/Task/master/DiDi/DiDi_reward.js, tag=滴滴出行 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/didi.png",
+        ;3 2 * * * https://raw.githubusercontent.com/Tartarus2014/Script/master/DiDi.js, tag=滴滴出行 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/didi.png",
+        "0 1,20 * * * https://raw.githubusercontent.com/zZPiglet/Task/master/DiDi/DiDi_new.js, tag=滴滴出行 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/didi.png",
         "2 5 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/zimuzu/zimuzu.js, tag=字幕组 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/zimuzu.png",
         "5 5 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/mgtv/mgtv.js, tag=芒果TV ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/mgtv.png",
         "12 5 * * * https://raw.githubusercontent.com/chavyleung/scripts/master/rrtv/rrtv.js, tag=人人视频 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/rrtv.png",
@@ -70,6 +71,7 @@
         "10 1 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_dreamFactory.js, tag=京喜工厂",
         "10 2 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_jdfactory.js, tag=东东工厂",
         "10 7 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_syj.js, tag=十元街",
+        "1 0,20 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_necklace.js, tag=点点券",
 
     ]
 }   
