@@ -61,6 +61,8 @@
         "10 2 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_jdfactory.js, tag=东东工厂 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png",
         "10 7 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_syj.js, tag=十元街 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png",
         "1 0,20 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_necklace.js, tag=点点券 ,img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png",
+        "10 * * * * https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_story.js, tag=京喜金牌厂长 ,img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdgc.png",
+
 
     ]
 }   
