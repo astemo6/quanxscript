@@ -1,2 +1,0 @@
-# quanxscript
-Personal use
