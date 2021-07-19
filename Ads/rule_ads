@@ -1,0 +1,48 @@
+#水果派去广告
+host, errlog.umeng.com, reject
+host, ulogs.umengcloud.com, reject
+#Logolabn去广告
+host, kksdk.tapque.com, reject
+host, omsdkapi.tapque.com, reject
+host, sdk.kkpromotion.tapque.com, reject
+#appcake去广告
+host, sdk.adtiming.com, reject
+#网络播放去广告
+host, googleads.g.doubleclick.net, reject
+#看吧去广告
+#下载地址：https://kanba.app
+host, ulogs.umeng.com, reject
+host, plbslog.umeng.com, reject
+#阅友去广告
+host, ads.reader.yueyouxs.com, reject
+
+#人人视频
+host, mdapi.opsvwa.xyz, reject
+host, mdapi.lyvsas.fun, reject
+host, mdapi.mdlzyx.me, reject
+host, avapp.calvapib.me, reject
+host, avapp.calvapic.me, reject
+host, avapp.calvapid.me, reject
+#人人视频
+host, eleven.bayescom.cn, reject
+host, cloudconf.fengkongcloud.com, reject
+host, v2.gdt.qq.com, reject
+host, ulogs.umeng.com, reject
+host, adashxgc.ut.taobao.com, reject
+host, www.qchannel01.cn, reject
+host, sf6-fe-tos.pglstatp-toutiao.com, reject
+host, api-access.pangolin-sdk-toutiao.com, reject
+host, av1.xdrig.com, reject
+host, sdk.e.qq.com, reject
+#小小影视去广告
+host, acf.huaerdadi.com, reject
+host, ios.bugly.qq.com, reject
+host, p.juxuyun.com, reject
+# 绕过企业证书过期
+host, ocsp.apple.com, reject
+#YouTube 去底部广告
+host-suffix, ehg-youtube.hitbox.com, reject
+# 避免迅雷版权问题
+host, hub5idx.v6.shub.sandai.net, reject
+host, hub5emu.v6.shub.sandai.net, reject
+host, hub5btmain.v6.shub.sandai.net, reject
