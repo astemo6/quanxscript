@@ -1,5 +1,5 @@
-{% macro main(Apple_API, Apple_API, Apple_CDN, Apple_API, Apple_API) %}
-# https://raw.githubusercontent.com/geekdada/surge-list/master/surgio-snippet/apple.tpl
+# macro main(Apple, Apple, Apple_CDN, Apple, Apple)
+#https://raw.githubusercontent.com/geekdada/surge-list/master/surgio-snippet/apple.tpl
 
 #
 # Apple 直连
@@ -9,37 +9,37 @@ USER-AGENT, *com.apple.mobileme.fmip1, DIRECT
 USER-AGENT, *WeatherFoundation*, DIRECT
 DOMAIN, weather-data.apple.com, DIRECT
 # Maps
-USER-AGENT, %E5%9C%B0%E5%9B%BE*, Apple_API
+USER-AGENT, %E5%9C%B0%E5%9B%BE*, Apple
 # Settings
 USER-AGENT, %E8%AE%BE%E7%BD%AE*, DIRECT
-USER-AGENT, com.apple.geod*, Apple_API
-USER-AGENT, com.apple.Maps, Apple_API
+USER-AGENT, com.apple.geod*, Apple
+USER-AGENT, com.apple.Maps, Apple
 USER-AGENT, FindMyFriends*, DIRECT
 USER-AGENT, FindMyiPhone*, DIRECT
 USER-AGENT, FMDClient*, DIRECT
 USER-AGENT, FMFD*, DIRECT
 USER-AGENT, fmflocatord*, DIRECT
-USER-AGENT, geod*, Apple_API
-USER-AGENT, locationd*, Apple_API
-USER-AGENT, Maps*, Apple_API
+USER-AGENT, geod*, Apple
+USER-AGENT, locationd*, Apple
+USER-AGENT, Maps*, Apple
 
 #
 # 一些 com.apple.appstored* 会连接的 API（优先级高）
 #
-DOMAIN, guzzoni.apple.com, Apple_API
-DOMAIN, apps.apple.com, Apple_API
-DOMAIN, xp.apple.com, Apple_API
-DOMAIN, bag.itunes.apple.com, Apple_API
-DOMAIN, api-edge.apps.apple.com, Apple_API
-DOMAIN, api.apps.apple.com, Apple_API
-DOMAIN, play.itunes.apple.com, Apple_API
-DOMAIN, se.itunes.apple.com, Apple_API
-DOMAIN, se-edge.itunes.apple.com, Apple_API
-DOMAIN, su.itunes.apple.com, Apple_API
-DOMAIN, upp.itunes.apple.com, Apple_API
-DOMAIN, beta.music.apple.com, Apple_API
-DOMAIN-KEYWORD, buy.itunes.apple.com, Apple_API
-DOMAIN-SUFFIX, itunes-apple.com.akadns.net, Apple_API
+DOMAIN, guzzoni.apple.com, Apple
+DOMAIN, apps.apple.com, Apple
+DOMAIN, xp.apple.com, Apple
+DOMAIN, bag.itunes.apple.com, Apple
+DOMAIN, api-edge.apps.apple.com, Apple
+DOMAIN, api.apps.apple.com, Apple
+DOMAIN, play.itunes.apple.com, Apple
+DOMAIN, se.itunes.apple.com, Apple
+DOMAIN, se-edge.itunes.apple.com, Apple
+DOMAIN, su.itunes.apple.com, Apple
+DOMAIN, upp.itunes.apple.com, Apple
+DOMAIN, beta.music.apple.com, Apple
+DOMAIN-KEYWORD, buy.itunes.apple.com, Apple
+DOMAIN-SUFFIX, itunes-apple.com.akadns.net, Apple
 
 #
 # Apple Global CDN
@@ -77,32 +77,32 @@ DOMAIN, app-site-association.cdn-apple.com, Apple_CDN
 # Apple Non-China CDN
 #
 # Trailer
-DOMAIN-SUFFIX, hls.itunes.apple.com, Apple_API
+DOMAIN-SUFFIX, hls.itunes.apple.com, Apple
 # Movie Stream
-DOMAIN-SUFFIX, hls-amt.itunes.apple.com, Apple_API
+DOMAIN-SUFFIX, hls-amt.itunes.apple.com, Apple
 # iTunes Music Stream
-DOMAIN-SUFFIX, audio-ssl.itunes.apple.com, Apple_API
-DOMAIN-SUFFIX, cdn-apple.com, Apple_API
-DOMAIN, cdn.apple-cloudkit.com, Apple_API
+DOMAIN-SUFFIX, audio-ssl.itunes.apple.com, Apple
+DOMAIN-SUFFIX, cdn-apple.com, Apple
+DOMAIN, cdn.apple-cloudkit.com, Apple
 # Developer
-DOMAIN, devimages-cdn.apple.com, Apple_API
-DOMAIN, devstreaming-cdn.apple.com, Apple_API
-DOMAIN, js-cdn.music.apple.com, Apple_API
-DOMAIN, docs-assets.developer.apple.com, Apple_API
+DOMAIN, devimages-cdn.apple.com, Apple
+DOMAIN, devstreaming-cdn.apple.com, Apple
+DOMAIN, js-cdn.music.apple.com, Apple
+DOMAIN, docs-assets.developer.apple.com, Apple
 # Other
-DOMAIN-SUFFIX, apple-dns.net, Apple_API
+DOMAIN-SUFFIX, apple-dns.net, Apple
 # OCSP
-DOMAIN-SUFFIX, ocsp.apple.com, Apple_API
-USER-AGENT, com.apple.trustd*, Apple_API
+DOMAIN-SUFFIX, ocsp.apple.com, Apple
+USER-AGENT, com.apple.trustd*, Apple
 
 #
 # Apple News
 #
-USER-AGENT, AppleNews*, Apple_API
-DOMAIN-SUFFIX, apple.news, Apple_API
-DOMAIN, news-events.apple.com, Apple_API
-DOMAIN, news-edge.apple.com, Apple_API
-DOMAIN, apple.comscoreresearch.com, Apple_API
+USER-AGENT, AppleNews*, Apple
+DOMAIN-SUFFIX, apple.news, Apple
+DOMAIN, news-events.apple.com, Apple
+DOMAIN, news-edge.apple.com, Apple
+DOMAIN, apple.comscoreresearch.com, Apple
 
 #
 # Apple 其他直连
@@ -120,9 +120,9 @@ DOMAIN-KEYWORD, smp-device, DIRECT
 USER-AGENT, passd*, DIRECT
 USER-AGENT, Wallet*, DIRECT
 # locationd
-DOMAIN, gs-loc.apple.com, Apple_API
-DOMAIN-SUFFIX, ls.apple.com.akadns.net, Apple_API
-DOMAIN-SUFFIX, ls.apple.com.edgesuite.net, Apple_API
+DOMAIN, gs-loc.apple.com, Apple
+DOMAIN-SUFFIX, ls.apple.com.akadns.net, Apple
+DOMAIN-SUFFIX, ls.apple.com.edgesuite.net, Apple
 # Reserve
 DOMAIN, reserve-prime.apple.com, DIRECT
 # Push
@@ -130,7 +130,7 @@ DOMAIN-KEYWORD, push-apple.com.akadns.net, DIRECT
 DOMAIN-SUFFIX, push.apple.com.akadns.net, DIRECT
 DOMAIN-SUFFIX, push.apple.com, DIRECT
 # GeoServices.framework
-DOMAIN-SUFFIX, ls.apple.com, Apple_API
+DOMAIN-SUFFIX, ls.apple.com, Apple
 # Asset Cache Locator Service
 DOMAIN-SUFFIX, lcdn-locator.apple.com, DIRECT
 # Caching Server Registration
@@ -140,23 +140,23 @@ DOMAIN-SUFFIX, lcdn-registration.apple.com, DIRECT
 # Apple 其他自选
 #
 # iMessage
-DOMAIN-SUFFIX, ess.apple.com, Apple_API
+DOMAIN-SUFFIX, ess.apple.com, Apple
 # Apple Music
-DOMAIN-SUFFIX, music.apple.com, Apple_API
-DOMAIN-SUFFIX, sonos-music.apple.com, Apple_API
+DOMAIN-SUFFIX, music.apple.com, Apple
+DOMAIN-SUFFIX, sonos-music.apple.com, Apple
 # Configuration
-DOMAIN, configuration.apple.com, Apple_API
+DOMAIN, configuration.apple.com, Apple
 # Others
-DOMAIN-SUFFIX, aaplimg.com, Apple_API
-DOMAIN-SUFFIX, apple.co, Apple_API
-DOMAIN-SUFFIX, itunes.com, Apple_API
-DOMAIN-SUFFIX, itunes.apple.com, Apple_API
-DOMAIN-SUFFIX, apple, Apple_API
-DOMAIN, weather-analytics-events.apple.com, Apple_API
+DOMAIN-SUFFIX, aaplimg.com, Apple
+DOMAIN-SUFFIX, apple.co, Apple
+DOMAIN-SUFFIX, itunes.com, Apple
+DOMAIN-SUFFIX, itunes.apple.com, Apple
+DOMAIN-SUFFIX, apple, Apple
+DOMAIN, weather-analytics-events.apple.com, Apple
 # iCloud 上传和下载
-DOMAIN-SUFFIX, icloud-content.com, Apple_API
-DOMAIN-SUFFIX, me.com, Apple_API
-DOMAIN-SUFFIX, apple.com, Apple_API
-DOMAIN-SUFFIX, icloud.com, Apple_API
-DOMAIN-SUFFIX, apple-cloudkit.com, Apple_API
+DOMAIN-SUFFIX, icloud-content.com, Apple
+DOMAIN-SUFFIX, me.com, Apple
+DOMAIN-SUFFIX, apple.com, Apple
+DOMAIN-SUFFIX, icloud.com, Apple
+DOMAIN-SUFFIX, apple-cloudkit.com, Apple
 
