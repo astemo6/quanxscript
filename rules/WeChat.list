@@ -317,6 +317,3 @@ IP-CIDR6,240E:F7:A070:100::/60,no-resolve
 IP-CIDR6,240E:F7:A070:403::/60,no-resolve
 IP-CIDR6,240E:FF:9018:100::/60,no-resolve
 IP-CIDR6,240E:FF:F100::/44,no-resolve
-
-USER-AGENT,WeChat*
-USER-AGENT,MicroMessenger*
