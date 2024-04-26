@@ -84,6 +84,7 @@ configure_ports_and_certificates() {
         echo "Certificates have been configured."
     else
         echo "Exiting the script."
+        exit 0
     fi
 }
 
