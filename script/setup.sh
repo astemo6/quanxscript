@@ -8,6 +8,8 @@ update_environment() {
         apt update -y
         apt install -y curl socat
         timedatectl set-timezone "Asia/Shanghai"
+        echo "update_environment completed."
+        exit 0
     else
         echo "Skipping update_environment."
     fi
@@ -21,6 +23,7 @@ change_root_password() {
         echo
         echo "root:$new_password" | chpasswd
         echo "Root password has been changed successfully."
+        exit 0
     else
         echo "Root password remains unchanged."
     fi
@@ -37,6 +40,7 @@ create_swap_partition() {
         swapon /swapfile
         echo "/swapfile none swap sw 0 0" >> /etc/fstab
         echo "Swap partition has been created successfully."
+        exit 0
     else
         echo "No swap partition created."
     fi
@@ -50,6 +54,7 @@ install_docker() {
         curl -fsSL https://get.docker.com -o get-docker.sh
         sh get-docker.sh
         echo "Docker has been installed successfully."
+        exit 0
     else
         echo "Docker installation skipped."
     fi
@@ -69,6 +74,7 @@ configure_ports_and_certificates() {
         ~/.acme.sh/acme.sh --issue -d "$domain_name" --standalone --force
         ~/.acme.sh/acme.sh --installcert -d "$domain_name" --key-file /root/private.key --fullchain-file /root/cert.crt
         ~/.acme.sh/acme.sh --upgrade --auto-upgrade
+        exit 0
     else
         echo "Exiting the script."
         exit 0
@@ -88,6 +94,7 @@ open_additional_ports() {
                 echo "Port $port has been opened successfully."
             done
             iptables-save
+            exit 0
         else
             echo "No additional ports opened."
             exit 0
@@ -105,6 +112,7 @@ enable_bbr() {
         echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
         sysctl -p
         echo "BBR has been enabled successfully."
+        exit 0
     else
         echo "BBR installation skipped."
     fi
@@ -120,13 +128,16 @@ install_xui() {
         1)
             read -p "Proceeding with x-ui_FranzKafkaYu installation. Press Enter to continue or Ctrl+C to cancel."
             bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install.sh)
+            exit 0
             ;;
         2)
             read -p "Proceeding with 3x-ui_MHSanaei installation. Press Enter to continue or Ctrl+C to cancel."
             bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+            exit 0
             ;;
         *)
             echo "Invalid choice. Exiting."
+            exit 1
             ;;
     esac
 }
