@@ -30,8 +30,8 @@ change_root_password() {
 create_swap_partition() {
     read -p "Do you want to create a swap partition? (y/n): " answer
     if [ "$answer" == "y" ]; then
-        read -p "Enter swap size in GB (e.g., 1): " swap_size
-        sudo fallocate -l ${swap_size}G /swapfile
+        read -p "Enter swap size in MB (e.g., 1024): " swap_size_mb
+        sudo fallocate -l ${swap_size_mb}M /swapfile
         sudo chmod 600 /swapfile
         sudo mkswap /swapfile
         sudo swapon /swapfile
