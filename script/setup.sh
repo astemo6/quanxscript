@@ -70,7 +70,8 @@ configure_ports_and_certificates() {
         ~/.acme.sh/acme.sh --installcert -d "$domain_name" --key-file /root/private.key --fullchain-file /root/cert.crt
         ~/.acme.sh/acme.sh --upgrade --auto-upgrade
     else
-        echo "Continuing without configuring ports and certificates."
+        echo "Exiting the script."
+        exit 0
     fi
 }
 
