@@ -2,8 +2,8 @@
 
 # Function to update components and configure environment
 update_environment() {
-    read -p "Are you sure you want to update components and configure environment? (yes/no): " answer
-    if [ "$answer" == "yes" ]; then
+    read -p "Are you sure you want to update components and configure environment? (y/n): " answer
+    if [ "$answer" == "y" ]; then
         sudo -i
         apt update -y
         apt install -y curl socat
@@ -15,8 +15,8 @@ update_environment() {
 
 # Function to change root password
 change_root_password() {
-    read -p "Do you want to change the root password? (yes/no): " answer
-    if [ "$answer" == "yes" ]; then
+    read -p "Do you want to change the root password? (y/n): " answer
+    if [ "$answer" == "y" ]; then
         read -s -p "Enter new root password: " new_password
         echo
         echo "root:$new_password" | chpasswd
@@ -28,8 +28,8 @@ change_root_password() {
 
 # Function to create swap partition
 create_swap_partition() {
-    read -p "Do you want to create a swap partition? (yes/no): " answer
-    if [ "$answer" == "yes" ]; then
+    read -p "Do you want to create a swap partition? (y/n): " answer
+    if [ "$answer" == "y" ]; then
         read -p "Enter swap size in GB (e.g., 1): " swap_size
         fallocate -l ${swap_size}G /swapfile
         chmod 600 /swapfile
@@ -44,8 +44,8 @@ create_swap_partition() {
 
 # Function to install Docker
 install_docker() {
-    read -p "Do you want to install Docker? (yes/no): " answer
-    if [ "$answer" == "yes" ]; then
+    read -p "Do you want to install Docker? (y/n): " answer
+    if [ "$answer" == "y" ]; then
         read -p "Proceeding with Docker installation. Press Enter to continue or Ctrl+C to cancel."
         curl -fsSL https://get.docker.com -o get-docker.sh
         sh get-docker.sh
@@ -57,8 +57,8 @@ install_docker() {
 
 # Function to open ports, apply certificates, and configure auto-renewal
 configure_ports_and_certificates() {
-    read -p "Are you going to build x-ui on this VPS? (yes/no): " answer
-    if [ "$answer" == "yes" ]; then
+    read -p "Are you going to build x-ui on this VPS? (y/n): " answer
+    if [ "$answer" == "y" ]; then
         echo "WARNING: The following operations will apply for SSL certificates. Please ensure that your domain name has been successfully resolved to this VPS."
         read -p "Press Enter to continue or Ctrl+C to cancel."
         iptables -I INPUT -p tcp --dport 80 -j ACCEPT
@@ -78,8 +78,8 @@ configure_ports_and_certificates() {
 # Function to open additional ports
 open_additional_ports() {
     while true; do
-        read -p "Do you want to open additional ports? (yes/no): " answer
-        if [ "$answer" == "yes" ]; then
+        read -p "Do you want to open additional ports? (y/n): " answer
+        if [ "$answer" == "y" ]; then
             read -p "Enter port numbers separated by commas (e.g., 8080,9090): " port_numbers
             IFS=',' read -ra ports <<< "$port_numbers"
             for port in "${ports[@]}"; do
@@ -97,8 +97,8 @@ open_additional_ports() {
 
 # Function to enable BBR
 enable_bbr() {
-    read -p "Do you want to enable BBR? (yes/no): " answer
-    if [ "$answer" == "yes" ]; then
+    read -p "Do you want to enable BBR? (y/n): " answer
+    if [ "$answer" == "y" ]; then
         read -p "Proceeding with enabling BBR. Press Enter to continue or Ctrl+C to cancel."
         echo "Enabling BBR..."
         echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
