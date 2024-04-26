@@ -65,8 +65,20 @@ configure_ports_and_certificates() {
         sudo iptables-save
         curl https://get.acme.sh | sudo sh
         sudo ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
-        read -p "Enter your domain name (e.g., example.com): " domain_name
-        sudo ~/.acme.sh/acme.sh --issue -d "$domain_name" --standalone --force
+        domain_name=""
+        while [ -z "$domain_name" ]; do
+            read -p "Enter your domain name (e.g., example.com): " domain_name
+            if [ -z "$domain_name" ]; then
+                echo "Domain name cannot be empty. Please enter a valid domain name."
+            else
+                sudo ~/.acme.sh/acme.sh --issue -d "$domain_name" --standalone --force
+                if [ $? -ne 0 ]; then
+                    echo "Certificate issuance failed for domain: $domain_name"
+                    echo "Please check your domain name and try again."
+                    domain_name=""
+                fi
+            fi
+        done
         sudo ~/.acme.sh/acme.sh --installcert -d "$domain_name" --key-file /root/private.key --fullchain-file /root/cert.crt
         sudo ~/.acme.sh/acme.sh --upgrade --auto-upgrade
         echo "Certificates have been configured."
