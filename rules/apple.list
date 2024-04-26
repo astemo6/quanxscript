@@ -1,6 +1,3 @@
-# macro main(Apple, Apple, Apple_CDN, Apple, Apple)
-#https://raw.githubusercontent.com/geekdada/surge-list/master/surgio-snippet/apple.tpl
-
 #
 # Apple 直连
 #
@@ -51,11 +48,9 @@ DOMAIN, osxapps.itunes.apple.com, Apple_CDN
 DOMAIN, oscdn.apple.com, Apple_CDN
 # Update
 DOMAIN, supportdownload.apple.com, Apple_CDN
-# Update
 DOMAIN, appldnld.apple.com, Apple_CDN
-# Update
+DOMAIN, appldnld.apple.com.edgesuite.net, Apple_CDN
 DOMAIN, swcdn.apple.com, Apple_CDN
-DOMAIN, apptrailers.itunes.apple.com, Apple_CDN
 DOMAIN, updates-http.cdn-apple.com, Apple_CDN
 DOMAIN, updates.cdn-apple.com, Apple_CDN
 # App Store & iTunes Images
@@ -64,10 +59,11 @@ DOMAIN-SUFFIX, mzstatic.com, Apple_CDN
 PROCESS-NAME, storedownloadd, Apple_CDN
 # iOS App Store
 USER-AGENT, com.apple.appstored*, Apple_CDN
-# Apple Music Streaming
+# iTunes
 DOMAIN, aod.itunes.apple.com, Apple_CDN
 DOMAIN, mvod.itunes.apple.com, Apple_CDN
 DOMAIN, streamingaudio.itunes.apple.com, Apple_CDN
+DOMAIN, apptrailers.itunes.apple.com, Apple_CDN
 # Other
 DOMAIN, download.developer.apple.com, Apple_CDN
 DOMAIN, downloaddispatch.itunes.apple.com, Apple_CDN
@@ -76,11 +72,9 @@ DOMAIN, app-site-association.cdn-apple.com, Apple_CDN
 #
 # Apple Non-China CDN
 #
-# Trailer
+# iTunes
 DOMAIN-SUFFIX, hls.itunes.apple.com, Apple
-# Movie Stream
 DOMAIN-SUFFIX, hls-amt.itunes.apple.com, Apple
-# iTunes Music Stream
 DOMAIN-SUFFIX, audio-ssl.itunes.apple.com, Apple
 DOMAIN-SUFFIX, cdn-apple.com, Apple
 DOMAIN, cdn.apple-cloudkit.com, Apple
@@ -121,6 +115,7 @@ USER-AGENT, passd*, DIRECT
 USER-AGENT, Wallet*, DIRECT
 # locationd
 DOMAIN, gs-loc.apple.com, Apple
+DOMAIN, gs-loc-cn.apple.com, Apple
 DOMAIN-SUFFIX, ls.apple.com.akadns.net, Apple
 DOMAIN-SUFFIX, ls.apple.com.edgesuite.net, Apple
 # Reserve
@@ -134,7 +129,19 @@ DOMAIN-SUFFIX, ls.apple.com, Apple
 # Asset Cache Locator Service
 DOMAIN-SUFFIX, lcdn-locator.apple.com, DIRECT
 # Caching Server Registration
-DOMAIN-SUFFIX, lcdn-registration.apple.com, DIRECT
+DOMAIN, lcdn-registration.apple.com, DIRECT
+DOMAIN, suconfig.apple.com, DIRECT
+DOMAIN, xp-cdn.apple.com, DIRECT
+# Translation
+# See https://github.com/ripperhe/Bob/issues/405
+DOMAIN, sequoia.apple.com, DIRECT
+DOMAIN, seed-sequoia.siri.apple.com, DIRECT
+# Settings
+DOMAIN, sq-device.apple.com, DIRECT
+# CN specific
+DOMAIN-KEYWORD, -cn.apple.com, DIRECT
+DOMAIN-SUFFIX, icloud.com.cn, DIRECT
+DOMAIN-SUFFIX, apple.com.cn, DIRECT
 
 #
 # Apple 其他自选
@@ -142,8 +149,8 @@ DOMAIN-SUFFIX, lcdn-registration.apple.com, DIRECT
 # iMessage
 DOMAIN-SUFFIX, ess.apple.com, Apple
 # Apple Music
-DOMAIN-SUFFIX, music.apple.com, Apple
-DOMAIN-SUFFIX, sonos-music.apple.com, Apple
+DOMAIN-SUFFIX, music.apple.com, Apple_CDN
+DOMAIN-SUFFIX, sonos-music.apple.com, Apple_CDN
 # Configuration
 DOMAIN, configuration.apple.com, Apple
 # Others
@@ -154,9 +161,8 @@ DOMAIN-SUFFIX, itunes.apple.com, Apple
 DOMAIN-SUFFIX, apple, Apple
 DOMAIN, weather-analytics-events.apple.com, Apple
 # iCloud 上传和下载
-DOMAIN-SUFFIX, icloud-content.com, Apple
-DOMAIN-SUFFIX, me.com, Apple
-DOMAIN-SUFFIX, apple.com, Apple
-DOMAIN-SUFFIX, icloud.com, Apple
-DOMAIN-SUFFIX, apple-cloudkit.com, Apple
-
+DOMAIN-SUFFIX, icloud-content.com, Apple_CDN
+DOMAIN-SUFFIX, me.com, Apple_CDN
+DOMAIN-SUFFIX, apple.com, Apple_CDN
+DOMAIN-SUFFIX, icloud.com, Apple_CDN
+DOMAIN-SUFFIX, apple-cloudkit.com, Apple_CDN
