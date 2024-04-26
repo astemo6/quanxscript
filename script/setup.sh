@@ -90,7 +90,7 @@ open_additional_ports() {
             iptables-save
         else
             echo "No additional ports opened."
-            break
+            exit 0
         fi
     done
 }
