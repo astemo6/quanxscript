@@ -10,7 +10,6 @@ update_environment() {
         timedatectl set-timezone "Asia/Shanghai"
     else
         echo "Skipping update_environment."
-        exit 0
     fi
 }
 
@@ -71,8 +70,7 @@ configure_ports_and_certificates() {
         ~/.acme.sh/acme.sh --installcert -d "$domain_name" --key-file /root/private.key --fullchain-file /root/cert.crt
         ~/.acme.sh/acme.sh --upgrade --auto-upgrade
     else
-        echo "Skipping configure_ports_and_certificates."
-        exit 0
+        echo "Continuing without configuring ports and certificates."
     fi
 }
 
