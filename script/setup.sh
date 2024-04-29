@@ -19,8 +19,13 @@ change_root_password() {
     if [ "$answer" == "y" ]; then
         read -s -p "Enter new root password: " new_password
         echo
+        echo "Attempting to change root password to: $new_password"
         echo "root:$new_password" | sudo chpasswd
-        echo "Root password has been changed successfully."
+        if [ $? -eq 0 ]; then
+            echo "Root password has been changed successfully."
+        else
+            echo "Failed to change root password."
+        fi
     else
         echo "Root password remains unchanged."
     fi
@@ -66,10 +71,24 @@ configure_ports_and_certificates() {
         curl https://get.acme.sh | sudo sh
         sudo ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
         domain_name=""
+        attempt=0
         while [ -z "$domain_name" ]; do
             read -p "Enter your domain name (e.g., example.com): " domain_name
             if [ -z "$domain_name" ]; then
                 echo "Domain name cannot be empty. Please enter a valid domain name."
+                attempt=$((attempt+1))
+                if [ $attempt -eq 3 ]; then
+                    read -p "Do you want to skip the SSL application for now? (y/n): " skip_ssl
+                    if [ "$skip_ssl" == "y" ]; then
+                        echo "Skipping SSL application."
+                        return
+                    elif [ "$skip_ssl" == "n" ]; then
+                        attempt=0
+                    else
+                        echo "Invalid choice. Exiting."
+                        exit 1
+                    fi
+                fi
             else
                 sudo ~/.acme.sh/acme.sh --issue -d "$domain_name" --standalone --force
                 if [ $? -ne 0 ]; then
