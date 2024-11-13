@@ -1,7 +1,3 @@
-{% macro main(default_rule, , , location_rule,) %}
-# http://www.jjinc.com.au/announcements/apple170008services
-# https://gist.github.com/joseconstela/a6e06ef9737e097eddcaf940ea313e38
-# https://support.apple.com/zh-cn/HT210060
 #
 # Maps
 USER-AGENT, %E5%9C%B0%E5%9B%BE*, Apple
