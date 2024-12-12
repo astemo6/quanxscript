@@ -114,7 +114,7 @@ configure_ports_and_certificates() {
 
     # Ensure socat is installed
     if ! command -v socat &> /dev/null; then
-        echo "Socat is not installed."
+        echo "Socat is not installed, it's crucial for SSL certificates."
         read -p "Do you want to install socat now? (y/n): " install_socat
         install_socat=${install_socat,,}  # Convert to lowercase
         case $install_socat in
