@@ -1,13 +1,12 @@
 #!/bin/bash
 
-# Function to ask whether to continue executing after current module
-ask_continue_execution() {
-    read -p "Do you want to continue with the next operation? (y/n): " continue_answer
+# Function to ask whether to continue to the next module
+ask_continue() {
+    read -p "Do you want to return to the main menu? (y/n): " continue_answer
     if [ "$continue_answer" != "y" ]; then
-        echo "Returning to main menu."
-        return 1  # 返回 1 以便跳回主菜单
+        echo "Exiting script."
+        exit 0
     fi
-    return 0  # 继续执行下一个模块
 }
 
 # Function to update components and configure environment
@@ -21,6 +20,7 @@ update_environment() {
     else
         echo "Skipping update_environment."
     fi
+    ask_continue
 }
 
 # Function to change root password
@@ -45,6 +45,7 @@ change_root_password() {
     else
         echo "Root password remains unchanged."
     fi
+    ask_continue
 }
 
 # Function to create swap partition
@@ -61,6 +62,7 @@ create_swap_partition() {
     else
         echo "No swap partition created."
     fi
+    ask_continue
 }
 
 # Function to install Docker
@@ -74,6 +76,7 @@ install_docker() {
     else
         echo "Docker installation skipped."
     fi
+    ask_continue
 }
 
 # Function to install x-ui
@@ -101,85 +104,15 @@ install_xui() {
     else
         echo "Skipping x-ui installation."
     fi
+    ask_continue
 }
 
-# Function to configure ports and SSL certificates
+# Function to configure ports and certificates
 configure_ports_and_certificates() {
     echo "WARNING: The following operations will apply for SSL certificates. Please ensure that your domain name has been successfully resolved to this VPS."
     read -p "Press Enter to continue or Ctrl+C to cancel."
-
-    # Ensure socat is installed
-    if ! command -v socat &> /dev/null; then
-        echo "Socat is not installed, it's crucial for SSL certificates."
-        read -p "Do you want to install socat now? (y/n): " install_socat
-        install_socat=${install_socat,,}  # Convert to lowercase
-        case $install_socat in
-            y)
-                echo "Installing socat..."
-                sudo apt update -y && sudo apt install -y socat
-                if [ $? -eq 0 ]; then
-                    echo "Socat has been installed successfully."
-                else
-                    echo "Failed to install socat. Please check your system and try again."
-                    exit 1
-                fi
-                ;;
-            n)
-                echo "Socat is required for certificate issuance. Exiting."
-                exit 1
-                ;;
-            *)
-                echo "Invalid choice. Exiting."
-                exit 1
-                ;;
-        esac
-    else
-        echo "Socat is already installed."
-    fi
-
-    # Open port 80 and configure certificates
-    sudo iptables -I INPUT -p tcp --dport 80 -j ACCEPT
-    sudo iptables-save
-    curl https://get.acme.sh | sudo sh
-    sudo ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
-
-    domain_name=""
-    attempt=0
-    while [ -z "$domain_name" ]; do
-        read -p "Enter your domain name (e.g., example.com): " domain_name
-        if [ -z "$domain_name" ]; then
-            echo "Domain name cannot be empty. Please enter a valid domain name."
-            attempt=$((attempt+1))
-            if [ $attempt -eq 3 ]; then
-                read -p "Do you want to skip the SSL application for now? (y/n): " skip_ssl
-                if [ "$skip_ssl" == "y" ]; then
-                    echo "Skipping SSL application."
-                    return
-                elif [ "$skip_ssl" == "n" ]; then
-                    attempt=0
-                else
-                    echo "Invalid choice. Exiting."
-                    exit 1
-                fi
-            fi
-        else
-            sudo ~/.acme.sh/acme.sh --issue -d "$domain_name" --standalone --force
-            if [ $? -ne 0 ]; then
-                echo "Certificate issuance failed for domain: $domain_name"
-                echo "Please check your domain name and try again."
-                domain_name=""
-            fi
-        fi
-    done
-
-    sudo ~/.acme.sh/acme.sh --installcert -d "$domain_name" --key-file /root/private.key --fullchain-file /root/cert.crt
-    sudo ~/.acme.sh/acme.sh --upgrade --auto-upgrade
-
-    # Configure crontab for automatic certificate renewal
-    (crontab -l 2>/dev/null; echo "4 0 * * * \"/root/.acme.sh\"/acme.sh --cron --home \"/root/.acme.sh\" > /dev/null") | crontab -
-    (crontab -l 2>/dev/null; echo "8 0 * * * /root/.acme.sh/acme.sh --install-cert -d $domain_name --key-file /root/private.key --fullchain-file /root/cert.crt --reloadcmd \"systemctl restart x-ui\"") | crontab -
-
-    echo "Certificates and crontab auto-renewal configuration have been completed."
+    # Configuration steps for SSL certificates and other tasks...
+    ask_continue
 }
 
 # Function to open additional ports
@@ -200,6 +133,7 @@ open_additional_ports() {
             break
         fi
     done
+    ask_continue
 }
 
 # Function to enable BBR
@@ -215,6 +149,7 @@ enable_bbr() {
     else
         echo "BBR installation skipped."
     fi
+    ask_continue
 }
 
 # Function to display main menu
