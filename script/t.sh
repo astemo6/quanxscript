@@ -9,6 +9,15 @@ ask_continue() {
     fi
 }
 
+# Function to ask whether to continue executing after current module
+ask_continue_execution() {
+    read -p "Do you want to continue with the next operation? (y/n): " continue_answer
+    if [ "$continue_answer" != "y" ]; then
+        echo "Returning to main menu."
+        return
+    fi
+}
+
 # Function to update components and configure environment
 update_environment() {
     read -p "Are you sure you want to update components and configure environment? (y/n): " answer
@@ -104,7 +113,7 @@ install_xui() {
     else
         echo "Skipping x-ui installation."
     fi
-    ask_continue
+    ask_continue_execution
 }
 
 # Function to configure ports and certificates
