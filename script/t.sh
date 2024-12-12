@@ -21,7 +21,6 @@ update_environment() {
     else
         echo "Skipping update_environment."
     fi
-    ask_continue_execution
 }
 
 # Function to change root password
@@ -46,7 +45,6 @@ change_root_password() {
     else
         echo "Root password remains unchanged."
     fi
-    ask_continue_execution
 }
 
 # Function to create swap partition
@@ -63,7 +61,6 @@ create_swap_partition() {
     else
         echo "No swap partition created."
     fi
-    ask_continue_execution
 }
 
 # Function to install Docker
@@ -77,7 +74,6 @@ install_docker() {
     else
         echo "Docker installation skipped."
     fi
-    ask_continue_execution
 }
 
 # Function to install x-ui
@@ -105,7 +101,6 @@ install_xui() {
     else
         echo "Skipping x-ui installation."
     fi
-    ask_continue_execution
 }
 
 # Function to configure ports and SSL certificates
@@ -185,7 +180,6 @@ configure_ports_and_certificates() {
     (crontab -l 2>/dev/null; echo "8 0 * * * /root/.acme.sh/acme.sh --install-cert -d $domain_name --key-file /root/private.key --fullchain-file /root/cert.crt --reloadcmd \"systemctl restart x-ui\"") | crontab -
 
     echo "Certificates and crontab auto-renewal configuration have been completed."
-    ask_continue_execution
 }
 
 # Function to open additional ports
@@ -206,7 +200,6 @@ open_additional_ports() {
             break
         fi
     done
-    ask_continue_execution
 }
 
 # Function to enable BBR
@@ -222,7 +215,6 @@ enable_bbr() {
     else
         echo "BBR installation skipped."
     fi
-    ask_continue_execution
 }
 
 # Function to display main menu
