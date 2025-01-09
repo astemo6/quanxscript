@@ -1,4 +1,5 @@
 #!/bin/bash
+# Scripts to start in a new VPS
 
 # Function to ask whether to continue to the next module
 ask_continue() {
