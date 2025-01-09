@@ -9,3 +9,9 @@ sudo sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication no/g' /etc/ss
 
 # 重启 SSH 服务以使更改生效
 sudo service sshd restart
+
+# log清除
+sudo truncate -s 0 /var/log/auth.log
+sudo rm -rf /var/log/*.gz
+sudo rm -rf /var/log/*.1
+sudo rm -rf /var/log/*.0
