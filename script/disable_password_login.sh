@@ -33,16 +33,19 @@ sudo apt install -y fail2ban
 
 # 配置 Fail2Ban
 cat <<EOF | sudo tee /etc/fail2ban/jail.local
+
 [DEFAULT]
-bantime = -1
-findtime = 10m
-maxretry = 10
-backend = systemd
+bantime = -1           # 封禁时间，-1 表示永久封禁，可根据需要调整为 1h（1小时）或其他值
+findtime = 10m         # 检测失败次数的时间窗口（如10分钟内）
+maxretry = 5           # 最大失败尝试次数，建议设置为 5（默认是 10）
+backend = systemd      # 使用 systemd 作为日志后端
+dbfile = /var/lib/fail2ban/fail2ban.sqlite3  # 持久化封禁记录，避免重启后清空
 
 [sshd]
-enabled = true
-port = ssh
-logpath = /var/log/auth.log
+enabled = true         # 启用对 SSH 服务的保护
+port = ssh             # 保护的端口
+logpath = /var/log/auth.log  # SSH 日志文件路径（Ubuntu 系统默认）
+
 EOF
 
 # 重启 Fail2Ban 服务以加载新配置
