@@ -21,8 +21,11 @@ sudo sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication no/g' /etc/ss
 # 重启 SSH 服务以使更改生效
 sudo systemctl restart sshd
 
-# 清除指定日志文件
+# 清除日志文件
 sudo truncate -s 0 /var/log/auth.log
+sudo rm -rf /var/log/*.gz
+sudo rm -rf /var/log/*.1
+sudo rm -rf /var/log/*.0
 
 # 安装 Fail2Ban
 sudo apt update
