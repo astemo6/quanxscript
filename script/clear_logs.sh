@@ -8,4 +8,3 @@ journalctl --vacuum-time=7d
 sudo rm -rf /var/log/*.gz
 sudo rm -rf /var/log/*.1
 sudo rm -rf /var/log/*.0
-# 安装 Fail2Ban
