@@ -26,7 +26,7 @@ echo "Enabling password authentication..."
 sudo sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 
 # 开启证书认证
-echo "Disabling public key authentication..."
+echo "Enabling/Keeping public key authentication..."
 sudo sed -i 's/^#\?PubkeyAuthentication.*/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
 
 # 编辑 /etc/ssh/sshd_config.d/60-cloudimg-settings.conf 文件，确保密码登录开启
