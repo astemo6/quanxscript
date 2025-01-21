@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# 确保 SSH（端口 2520）始终允许
+echo "Allowing SSH (port 2520) to prevent disconnection..."
+sudo iptables -A INPUT -p tcp --dport 2520 -j ACCEPT
+
 # 清除现有的 iptables 规则
 echo "Flushing iptables rules..."
 sudo iptables -F
@@ -58,4 +62,3 @@ sudo systemctl enable iptables
 # 检查规则是否生效
 echo "Checking current iptables rules..."
 sudo iptables -L INPUT --line-numbers
-
