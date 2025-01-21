@@ -29,7 +29,7 @@ sudo iptables -A INPUT -p udp --sport 123 -j ACCEPT
 
 # 允许多个端口的流量，包括端口 2520
 echo "Allowing multiple ports including 2520..."
-sudo iptables -A INPUT -p tcp -m multiport --dports 22,53,80,443,2096,2520,5555,5580:5600,8080,8000:8100 -j ACCEPT
+sudo iptables -A INPUT -p tcp -m multiport --dports 22,53,80,81,443,2096,2520,5555,5580:5600,5690,8080,8000:8100 -j ACCEPT
 
 # 允许所有出口流量
 echo "Allowing all outbound traffic..."
