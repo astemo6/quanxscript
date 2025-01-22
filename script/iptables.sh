@@ -3,6 +3,7 @@
 # 确保 SSH（端口 2520）始终允许
 echo "Allowing SSH (port 2520) to prevent disconnection..."
 sudo iptables -A INPUT -p tcp --dport 2520 -j ACCEPT
+sudo iptables -A INPUT -p udp --dport 2520 -j ACCEPT
 
 # 清除现有的 iptables 规则
 echo "Flushing iptables rules..."
@@ -31,9 +32,15 @@ sudo iptables -A INPUT -p icmp -j ACCEPT
 echo "Allowing UDP port 123 (NTP)..."
 sudo iptables -A INPUT -p udp --sport 123 -j ACCEPT
 
-# 允许多个端口的流量，包括端口 2520
-echo "Allowing multiple ports including 2520..."
-sudo iptables -A INPUT -p tcp -m multiport --dports 22,53,80,81,443,2096,2520,5555,5580:5600,5690,8080,8000:8100 -j ACCEPT
+# 允许多个端口的 TCP 和对应的 UDP 流量
+echo "Allowing multiple ports for both TCP and UDP..."
+PORTS="22,53,80,81,443,2096,2520,5555,5580:5600,5690,8080,8000:8100"
+
+# 添加 TCP 规则
+sudo iptables -A INPUT -p tcp -m multiport --dports $PORTS -j ACCEPT
+
+# 添加对应的 UDP 规则
+sudo iptables -A INPUT -p udp -m multiport --dports $PORTS -j ACCEPT
 
 # 允许所有出口流量
 echo "Allowing all outbound traffic..."
