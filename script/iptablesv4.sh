@@ -34,7 +34,7 @@ sudo iptables -A INPUT -p udp --sport 123 -j ACCEPT
 
 # 允许多个端口的 TCP 和对应的 UDP 流量
 echo "Allowing multiple ports for both TCP and UDP..."
-PORTS="22,53,80,81,443,2096,2520,5555,5580:5600,5690,8080,8000:8100"
+PORTS="22,53,80:100,443,2096,2520,5555,5580:5600,5690,8080,8000:8100"
 
 # 添加 TCP 规则
 sudo iptables -A INPUT -p tcp -m multiport --dports $PORTS -j ACCEPT
