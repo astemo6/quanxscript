@@ -64,6 +64,7 @@ sudo sh -c 'ip6tables-save > /etc/iptables/rules.v6'
 echo "Restoring ip6tables rules..."
 sudo ip6tables-restore < /etc/iptables/rules.v6
 
+
 # **启用 ip6tables 服务（如果系统支持）**
 echo "Enabling ip6tables service..."
 sudo systemctl enable ip6tables 2>/dev/null || echo "ip6tables service not found or not supported."
