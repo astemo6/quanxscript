@@ -1,100 +1,96 @@
 /*
- * Quantumult X GeoLocation Checker (Dual Stack v2)
- * * 1. 主 IP：使用 ip-api.com 的数据（QX 默认连接使用的 IP）。
- * 2. IPv6：通过 http://6.ipw.cn 额外探测。
- * 3. 即使探测失败，也会显示 "N/A" 以便调试。
+ * Quantumult X GeoLocation Checker (Smart Single Stack)
+ * 逻辑：空间节省模式
+ * 1. 如果有 IPv6 (无论是主IP还是探测到的)，只显示 IPv6。
+ * 2. 如果只有 IPv4，显示 IPv4。
+ * 3. 解决 v6-only 节点无法显示的问题。
  */
 
-// 这一行是用来检测主 IP 的，由 QX 自动触发
+// 主查询 URL (QX配置中填写的那个)
 const url = "http://ip-api.com/json/?lang=zh-CN";
-
-// 这是用来探测 IPv6 的接口 (使用国内源，速度快)
+// 侧边探测 URL (纯 IPv6 接口)
 const v6Url = "http://6.ipw.cn";
 
 checkIP();
 
 function checkIP() {
-    // 1. 处理主 IP (IPv4 或 节点优先 IP)
-    if ($response.statusCode != 200) {
-        $done({});
-        return;
-    }
-
-    let body = $response.body;
-    let mainInfo = {};
+    // ---------------------------
+    // 1. 获取主连接信息 (默认 v4 或 v6)
+    // ---------------------------
+    let mainInfo = null;
+    let mainIP = "";
     
-    try {
-        mainInfo = JSON.parse(body);
-    } catch (e) {
-        $done({title: "Error", subtitle: "JSON Parse Fail", ip: ""});
+    if ($response.statusCode == 200) {
+        try {
+            mainInfo = JSON.parse($response.body);
+            mainIP = mainInfo.query;
+        } catch(e) {}
+    }
+
+    // 如果主请求完全失败，且没有备份手段，直接报错
+    if (!mainInfo) {
+        $done({title: "Error", subtitle: "检测失败", ip: ""});
         return;
     }
 
-    // 提取主要信息
-    let ip = mainInfo.query; // 这是最优先识别的 IP
+    // 基础信息提取
     let isp = mainInfo.isp;
     let countryCode = mainInfo.countryCode;
-    let country = mainInfo.country;
-    let city = mainInfo.city;
-    let region = mainInfo.regionName;
+    let locationInfo = getFlagEmoji(countryCode) + " " + mainInfo.country + " " + mainInfo.city;
 
-    // 组合旗帜和地区
-    let locationInfo = getFlagEmoji(countryCode) + " " + country + " " + city;
-    
-    // 初始化副标题
-    let subtitle = "IPv4: " + ip;
-    if (isp) subtitle += " | " + isp;
+    // ---------------------------
+    // 2. 决策：如果主 IP 已经是 v6，直接结束
+    // ---------------------------
+    if (mainIP.indexOf(":") > -1) {
+        // 主 IP 是 v6，直接显示，不需要再探测
+        $done({
+            title: locationInfo,
+            subtitle: "IPv6: " + mainIP + " | " + isp,
+            ip: mainIP
+        });
+        return;
+    }
 
-    // 2. 异步请求 IPv6
+    // ---------------------------
+    // 3. 决策：主 IP 是 v4，尝试探测是否有 v6
+    // ---------------------------
     const opts = {
         url: v6Url,
-        timeout: 1500, // 1.5秒超时
-        headers: {
-            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)"
-        }
+        timeout: 1000, // 快速超时，避免卡顿
+        headers: { "User-Agent": "QX-Script" }
     };
 
-    $task.fetch(opts).then(function(response) {
-        // 请求成功
-        let v6IP = response.body ? response.body.trim() : "";
+    $task.fetch(opts).then(function(resp) {
+        let v6IP = resp.body ? resp.body.trim() : "";
         
-        // 简单验证是否是 IPv6 格式 (包含冒号)
         if (v6IP && v6IP.indexOf(":") > -1) {
-            // 如果主 IP 已经是这个 IPv6，就不重复显示
-            if (v6IP !== ip) {
-                subtitle += "\nIPv6: " + v6IP;
-            } else {
-                subtitle += "\nIPv6: (同主IP)";
-            }
+            // 【情况A】：虽然主连接是 v4，但节点支持 v6 -> 优先显示 v6
+            $done({
+                title: locationInfo,
+                subtitle: "IPv6: " + v6IP + " | " + isp, // 替换显示为 v6
+                ip: mainIP // 列表右侧小字依然显示主 IP (v4)，但副标题显示 v6
+            });
         } else {
-            // 如果返回的不是 IP
-            subtitle += "\nIPv6: 未检测到";
+            // 【情况B】：只有 v4 -> 显示 v4
+            $done({
+                title: locationInfo,
+                subtitle: "IPv4: " + mainIP + " | " + isp,
+                ip: mainIP
+            });
         }
-        
-        // 完成并输出
+    }, function(err) {
+        // 【情况C】：探测失败 (超时或不支持) -> 显示 v4
         $done({
             title: locationInfo,
-            subtitle: subtitle,
-            ip: ip
-        });
-
-    }, function(reason) {
-        // 请求失败 (超时或网络不通)
-        // 强制显示失败信息，以便您确认脚本已运行
-        subtitle += "\nIPv6: N/A (检测超时或无V6)";
-        
-        $done({
-            title: locationInfo,
-            subtitle: subtitle,
-            ip: ip
+            subtitle: "IPv4: " + mainIP + " | " + isp,
+            ip: mainIP
         });
     });
 }
 
 function getFlagEmoji(countryCode) {
     if (!countryCode) return "";
-    // 如需将 TW 显示为 CN，请取消下面注释
-    // if (countryCode.toUpperCase() === 'TW') return '🇨🇳';
+    // if (countryCode.toUpperCase() === 'TW') return '🇨🇳'; // 如需转换旗帜请取消注释
     const codePoints = countryCode
       .toUpperCase()
       .split('')
